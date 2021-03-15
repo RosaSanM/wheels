@@ -209,12 +209,3 @@ document.getElementById("brand3").addEventListener('keyup', validateWheel);
 document.getElementById("brand3").addEventListener('blur', validateWheel);
 document.getElementById("brand4").addEventListener('keyup', validateWheel);
 document.getElementById("brand4").addEventListener('blur', validateWheel);
-//let inputsDiameter = [(document.getElementsByClassName("diameter"))];
-/*let inputsLength = inputs.length;
-for(let element of inputsDiameter){
-  element.addEventListener()
-}
-
-for(let i = 0; i<=inputsLength; i++){
-  inputsDiameter[i].addEventListener()
-}*/

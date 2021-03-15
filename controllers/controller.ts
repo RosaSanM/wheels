@@ -217,14 +217,5 @@ buttonWheel.addEventListener('click', (e) => {
 
 
 
-//let inputsDiameter = [(document.getElementsByClassName("diameter"))];
-/*let inputsLength = inputs.length;
-for(let element of inputsDiameter){
-  element.addEventListener()
-}
-
-for(let i = 0; i<=inputsLength; i++){
-  inputsDiameter[i].addEventListener()
-}*/
 
 
