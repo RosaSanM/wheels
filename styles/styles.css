@@ -1,3 +1,40 @@
-.create-car .hidden{
+/*Font style*/
+body{
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}
+
+/*styles*/
+.headTitle{
+    height: 100%;
+    color: white;
+}
+
+.header{
+    background-image: url("../images/img2.jpg");
+    background-position: 0% 45% ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 100vw;
+}    
+
+.form-control{
+    font-weight: bold;
+}
+
+/*hide car form*/ 
+.create-car.hidden{
     display: none;
+}
+/*hide wheel form*/
+#wheels-form.hidden{
+    display: none;
+}
+/*hide-show button new car*/
+#addCar{
+    display: none;
+}
+#addCar.show{
+    display: block;
 }

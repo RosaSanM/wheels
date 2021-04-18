@@ -1,34 +1,24 @@
 "use strict";
 //VARIABLES
 //Global
-var car;
-var wheels = new Array();
-var show;
-var cars = new Array();
-//Car elements   
-var newPlate;
-var newBrand;
-var newColor;
-var carTrue = false;
-//Wheels elements
-var wheelTrue = false;
-var diameter1;
-var brand1;
-var diameter2;
-var brand2;
-var diameter3;
-var brand3;
-var diameter4;
-var brand4;
+let car;
+let wheels = new Array();
+let show;
+const cars = new Array();
+//boolean validate   
+let carTrue = false;
+let wheelTrue = false;
 //buttons
-var buttonCar = document.getElementById('car');
-var buttonWheel = document.getElementById('rueda');
+let buttonCar = document.getElementById('car');
+let buttonWheel = document.getElementById('rueda');
+let buttonNewCar = document.getElementById('addCar');
 //FUNCTIONS
-//Hidden form
+//Hidden forms
 function hideCar() {
-    var _a;
+    var _a, _b;
     if (carTrue) {
         (_a = document.querySelector('.create-car')) === null || _a === void 0 ? void 0 : _a.classList.add('hidden');
+        (_b = document.querySelector('#wheels-form')) === null || _b === void 0 ? void 0 : _b.classList.remove('hidden');
         carTrue = false;
     }
     else if (!carTrue) {
@@ -47,18 +37,28 @@ function hideWheel() {
 }
 //Create car
 function createCar() {
+    var _a;
     //get value of inputs
-    newPlate = document.getElementById("plate").value;
-    newBrand = document.getElementById("brand").value;
-    newColor = document.getElementById("color").value;
-    //second validate
-    //if (typeof (newPlate) === 'string' && typeof (newBrand) === 'string' && typeof (newColor) === 'string') {
+    let newPlate = document.getElementById("plate").value;
+    let newBrand = document.getElementById("brand").value;
+    let newColor = document.getElementById("color").value;
+    // validate
     if (wheelTrue) {
+        let i;
         //create object and add to array
         car = new Car(newPlate, newColor, newBrand);
         createWheel();
         cars.push(car);
         hideWheel();
+        (_a = document.getElementById('car-form')) === null || _a === void 0 ? void 0 : _a.classList.remove('is-valid');
+        //show data car
+        document.getElementById('result').classList.remove('d-none');
+        document.getElementById('result').innerHTML += `Coche para reparar: <br>    
+      Matricula: ${car.plate}, color: ${car.color} y marca: ${car.brand} <br>      
+      Rueda 1 => Diametro: ${car.wheels[0].diameter}, marca: ${car.wheels[0].brand} <br>
+      Rueda 2 => Diametro: ${car.wheels[1].diameter}, marca: ${car.wheels[1].brand} <br>
+      Rueda 3 => Diametro: ${car.wheels[2].diameter}, marca: ${car.wheels[2].brand} <br>
+      Rueda 4 => Diametro: ${car.wheels[3].diameter}, marca: ${car.wheels[3].brand} <br><br><br>`;
     }
     else {
         hideWheel();
@@ -67,30 +67,41 @@ function createCar() {
 //Create wheel
 function createWheel() {
     //wheel values
-    var diameter1 = document.getElementById('diameter1').value;
-    var brand1 = document.getElementById('brand1').value;
-    var diameter2 = document.getElementById('diameter2').value;
-    var brand2 = document.getElementById('brand2').value;
-    var diameter3 = document.getElementById('diameter3').value;
-    var brand3 = document.getElementById('brand3').value;
-    var diameter4 = document.getElementById('diameter4').value;
-    var brand4 = document.getElementById('brand4').value;
+    let diameter1 = document.getElementById('diameter1').value;
+    let brand1 = document.getElementById('brand1').value;
+    let diameter2 = document.getElementById('diameter2').value;
+    let brand2 = document.getElementById('brand2').value;
+    let diameter3 = document.getElementById('diameter3').value;
+    let brand3 = document.getElementById('brand3').value;
+    let diameter4 = document.getElementById('diameter4').value;
+    let brand4 = document.getElementById('brand4').value;
     //create object and add
-    var wheel1 = new Wheel(diameter1, brand1);
+    let wheel1 = new Wheel(diameter1, brand1);
     car.addWheel(wheel1);
-    var wheel2 = new Wheel(diameter2, brand2);
+    let wheel2 = new Wheel(diameter2, brand2);
     car.addWheel(wheel2);
-    var wheel3 = new Wheel(diameter3, brand3);
+    let wheel3 = new Wheel(diameter3, brand3);
     car.addWheel(wheel3);
-    var wheel4 = new Wheel(diameter4, brand4);
+    let wheel4 = new Wheel(diameter4, brand4);
     car.addWheel(wheel4);
+}
+//Add new car clean forms
+function addNewCar() {
+    var _a, _b, _c;
+    //reset forms and classes of the inputs
+    (_a = document.getElementById('car-form')) === null || _a === void 0 ? void 0 : _a.reset();
+    (_b = document.getElementById('wheels-form')) === null || _b === void 0 ? void 0 : _b.reset();
+    let formInputs = document.getElementsByClassName('is-valid');
+    Array.from(formInputs).forEach((element) => element.classList.remove('is-valid'));
+    //show car form   
+    (_c = document.querySelector('.create-car')) === null || _c === void 0 ? void 0 : _c.classList.remove('hidden');
 }
 //VALIDATES
 //validate plate
 function validatePlate() {
     var _a, _b, _c, _d;
-    var regexPlate = /[a-zA-Z]{4}[0-9]{3}$/;
-    newPlate = document.getElementById("plate").value;
+    let regexPlate = /[a-zA-Z]{4}[0-9]{3}$/;
+    let newPlate = document.getElementById("plate").value;
     if (!(regexPlate.test(newPlate))) {
         (_a = document.getElementById('plate')) === null || _a === void 0 ? void 0 : _a.classList.remove('is-valid');
         (_b = document.getElementById('plate')) === null || _b === void 0 ? void 0 : _b.classList.add('is-invalid');
@@ -105,7 +116,7 @@ function validatePlate() {
 //Validate color
 function validateColor() {
     var _a, _b, _c, _d;
-    newColor = document.getElementById("color").value;
+    let newColor = document.getElementById("color").value;
     if (newColor === "") {
         (_a = document.getElementById('color')) === null || _a === void 0 ? void 0 : _a.classList.remove('is-valid');
         (_b = document.getElementById('color')) === null || _b === void 0 ? void 0 : _b.classList.add('is-invalid');
@@ -120,7 +131,7 @@ function validateColor() {
 //Validate brand 
 function validateBrand() {
     var _a, _b, _c, _d;
-    newBrand = document.getElementById("brand").value;
+    let newBrand = document.getElementById("brand").value;
     if (newBrand === "") {
         (_a = document.getElementById('brand')) === null || _a === void 0 ? void 0 : _a.classList.remove('is-valid');
         (_b = document.getElementById('brand')) === null || _b === void 0 ? void 0 : _b.classList.add('is-invalid');
@@ -158,30 +169,39 @@ function validateWheel(e) {
     function validateEmpty(input, id) {
         var _a, _b, _c, _d;
         if (input === "") {
-            (_a = document.getElementById("" + id)) === null || _a === void 0 ? void 0 : _a.classList.add('is-invalid');
-            (_b = document.getElementById("" + id)) === null || _b === void 0 ? void 0 : _b.classList.remove('is-valid');
+            (_a = document.getElementById(`${id}`)) === null || _a === void 0 ? void 0 : _a.classList.add('is-invalid');
+            (_b = document.getElementById(`${id}`)) === null || _b === void 0 ? void 0 : _b.classList.remove('is-valid');
             wheelTrue = false;
         }
         else {
-            (_c = document.getElementById("" + id)) === null || _c === void 0 ? void 0 : _c.classList.add('is-valid');
-            (_d = document.getElementById("" + id)) === null || _d === void 0 ? void 0 : _d.classList.remove('is-invalid');
+            (_c = document.getElementById(`${id}`)) === null || _c === void 0 ? void 0 : _c.classList.add('is-valid');
+            (_d = document.getElementById(`${id}`)) === null || _d === void 0 ? void 0 : _d.classList.remove('is-invalid');
             wheelTrue = true;
         }
     }
 }
 //LISTENERS
 //car button
-buttonCar.addEventListener('click', function (e) {
+buttonCar.addEventListener('click', (e) => {
     e.preventDefault();
     //comprobar campos
     hideCar();
-    //llamar a validacion!!
 });
 //create object
 //wheel button
-buttonWheel.addEventListener('click', function (e) {
+buttonWheel.addEventListener('click', (e) => {
     e.preventDefault();
     createCar();
+});
+//Another car
+//newCar button
+buttonNewCar.addEventListener('click', (e) => {
+    var _a;
+    e.preventDefault();
+    //hide button
+    (_a = document.getElementById('addCar')) === null || _a === void 0 ? void 0 : _a.classList.remove('show');
+    //call form
+    addNewCar();
 });
 //validate inputs car
 document.getElementById("plate").addEventListener('keyup', validatePlate);
