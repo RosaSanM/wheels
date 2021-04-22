@@ -44,7 +44,7 @@ function createCar() {
   // validate
   
   if(wheelTrue){  
-    let i;
+    
   //create object and add to array
     car = new Car(newPlate, newColor, newBrand);
     createWheel();
@@ -68,30 +68,17 @@ function createCar() {
 //Create wheel
 function createWheel() {
   //wheel values
-  let diameter1 = (document.getElementById('diameter1') as HTMLFormElement).value;
-  let brand1    = (document.getElementById('brand1') as HTMLFormElement).value;
-  let diameter2 = (document.getElementById('diameter2') as HTMLFormElement).value;
-  let brand2    = (document.getElementById('brand2') as HTMLFormElement).value;
-  let diameter3 = (document.getElementById('diameter3') as HTMLFormElement).value;
-  let brand3    = (document.getElementById('brand3') as HTMLFormElement).value;
-  let diameter4 = (document.getElementById('diameter4') as HTMLFormElement).value;
-  let brand4    = (document.getElementById('brand4') as HTMLFormElement).value;
-  
   //create object and add
-  let wheel1: Wheel = new Wheel(diameter1, brand1);
-  car.addWheel(wheel1);
-
-  let wheel2: Wheel = new Wheel(diameter2, brand2);
-  car.addWheel(wheel2);
-
-  let wheel3: Wheel = new Wheel(diameter3, brand3);
-  car.addWheel(wheel3)
-
-  let wheel4: Wheel = new Wheel(diameter4, brand4);
-  car.addWheel(wheel4);
-
   
-}
+  for (let i = 1; i <= 4; i++) {
+    let brandWheel: string = (document.getElementById("brand" + i)as HTMLFormElement).value;
+    let diameterWheel: number = (document.getElementById("diameter" + i)as HTMLFormElement).value;
+    let wheel: Wheel = new Wheel(diameterWheel, brandWheel);
+      car.addWheel(wheel);
+  }
+} 
+
+
  //Add new car clean forms
  function addNewCar(){
 
@@ -160,30 +147,30 @@ function validateWheel(e: any): void {
       break
   }
 
-  function validateDiameter(input: number, id:string) {
-    if (input < 0.4 || input > 2 || input == undefined) {
-      document.getElementById(id)?.classList.add('is-invalid');
-      document.getElementById(id)?.classList.remove('is-valid');
-      wheelTrue = false;
-    } else {
-      document.getElementById(id)?.classList.add('is-valid');
-      document.getElementById(id)?.classList.remove('is-invalid');
-      wheelTrue = true;
-    }
-  }
-
-  function validateEmpty(input: string, id: string) {
-    if (input === "") {
-      document.getElementById(`${id}`)?.classList.add('is-invalid');
-      document.getElementById(`${id}`)?.classList.remove('is-valid');
-      wheelTrue = false;
-    } else {
-      document.getElementById(`${id}`)?.classList.add('is-valid');
-      document.getElementById(`${id}`)?.classList.remove('is-invalid');
-      wheelTrue = true;
-    }
+} 
+function validateDiameter(input: number, id: string) {
+  if (input < 0.4 || input > 2 || input == undefined) {
+    document.getElementById(id)?.classList.add('is-invalid');
+    document.getElementById(id)?.classList.remove('is-valid');
+    wheelTrue = false;
+  } else {
+    document.getElementById(id)?.classList.add('is-valid');
+    document.getElementById(id)?.classList.remove('is-invalid');
+    wheelTrue = true;
   }
 }
+function validateEmpty(input: string, id: string) {
+  if (input === "") {
+    document.getElementById(id)?.classList.add('is-invalid');
+    document.getElementById(id)?.classList.remove('is-valid');
+    wheelTrue = false;
+  } else {
+    document.getElementById(id)?.classList.add('is-valid');
+    document.getElementById(id)?.classList.remove('is-invalid');
+    wheelTrue = true;
+  }
+}
+
 
 //LISTENERS
 //car button
@@ -208,7 +195,6 @@ buttonNewCar.addEventListener('click', (e) => {
   document.getElementById('addCar')?.classList.remove('show');
   //call form
   addNewCar();
-
   
 });
 
@@ -219,28 +205,18 @@ buttonNewCar.addEventListener('click', (e) => {
 (document.getElementById("color") as HTMLFormElement).addEventListener('blur', validateColor);
 (document.getElementById("brand") as HTMLFormElement).addEventListener('keyup', validateBrand);
 (document.getElementById("brand") as HTMLFormElement).addEventListener('blur', validateBrand);
+
 //validate inputs wheels
 //listeners diameter
-(document.getElementById("diameter1") as HTMLFormElement).addEventListener('keyup', validateWheel);
-(document.getElementById("diameter1") as HTMLFormElement).addEventListener('blur', validateWheel);
-(document.getElementById("diameter2") as HTMLFormElement).addEventListener('keyup', validateWheel);
-(document.getElementById("diameter2") as HTMLFormElement).addEventListener('blur', validateWheel);
-(document.getElementById("diameter3") as HTMLFormElement).addEventListener('keyup', validateWheel);
-(document.getElementById("diameter3") as HTMLFormElement).addEventListener('blur', validateWheel);
-(document.getElementById("diameter4") as HTMLFormElement).addEventListener('keyup', validateWheel);
-(document.getElementById("diameter4") as HTMLFormElement).addEventListener('blur', validateWheel);
 //listeners brand
-(document.getElementById("brand1") as HTMLFormElement).addEventListener('keyup', validateWheel);
-(document.getElementById("brand1") as HTMLFormElement).addEventListener('blur', validateWheel);
-(document.getElementById("brand2") as HTMLFormElement).addEventListener('keyup', validateWheel);
-(document.getElementById("brand2") as HTMLFormElement).addEventListener('blur', validateWheel);
-(document.getElementById("brand3") as HTMLFormElement).addEventListener('keyup', validateWheel);
-(document.getElementById("brand3") as HTMLFormElement).addEventListener('blur', validateWheel);
-(document.getElementById("brand4") as HTMLFormElement).addEventListener('keyup', validateWheel);
-(document.getElementById("brand4") as HTMLFormElement).addEventListener('blur', validateWheel);
 
+for(let z = 1; z <= 4; z++){
+(document.getElementById("brand"+z) as HTMLFormElement).addEventListener('blur', validateWheel);
+(document.getElementById("brand"+z) as HTMLFormElement).addEventListener('keyup', validateWheel);
+(document.getElementById("diameter"+z) as HTMLFormElement).addEventListener('blur', validateWheel);
+(document.getElementById("diameter"+z) as HTMLFormElement).addEventListener('keyup', validateWheel);
 
-
+}
 
 
 
