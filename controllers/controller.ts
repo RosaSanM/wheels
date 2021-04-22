@@ -55,10 +55,9 @@ function createCar() {
     (document.getElementById('result') as HTMLElement).classList.remove('d-none');  
     (document.getElementById('result') as HTMLElement).innerHTML += `<br>Coche para reparar: <br>    
     Matricula: ${car.plate}, color: ${car.color} y marca: ${car.brand} <br>`
-    for(let i = 0; i<= 4; i++){
-      (document.getElementById('result') as HTMLElement).innerHTML += `Coche para reparar: <br>    
-            
-      Rueda ${i} => Diametro: ${car.wheels[i].diameter}, marca: ${car.wheels[i].brand} <br>`
+    for(let i = 0; i <= 4; i++){
+      (document.getElementById('result') as HTMLElement).innerHTML +=     
+      `Rueda ${i+1} => Diametro: ${car.wheels[i].diameter}, marca: ${car.wheels[i].brand} <br>`
     }
     
   }else{
