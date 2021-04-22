@@ -38,3 +38,7 @@ body{
 #addCar.show{
     display: block;
 }
+
+#result {
+    margin-top: 10px;
+}
