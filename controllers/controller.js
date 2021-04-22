@@ -53,11 +53,21 @@ function createCar() {
         //show data car
         document.getElementById('result').classList.remove('d-none');
         document.getElementById('result').innerHTML += `Coche para reparar: <br>    
-      Matricula: ${car.plate}, color: ${car.color} y marca: ${car.brand} <br>      
-      Rueda 1 => Diametro: ${car.wheels[0].diameter}, marca: ${car.wheels[0].brand} <br>
-      Rueda 2 => Diametro: ${car.wheels[1].diameter}, marca: ${car.wheels[1].brand} <br>
-      Rueda 3 => Diametro: ${car.wheels[2].diameter}, marca: ${car.wheels[2].brand} <br>
-      Rueda 4 => Diametro: ${car.wheels[3].diameter}, marca: ${car.wheels[3].brand} <br><br><br>`;
+      Matricula: ${car.plate}, color: ${car.color} y marca: ${car.brand} <br>`;
+        for (let i = 0; i <= 4; i++) {
+            document.getElementById('result').innerHTML += `Coche para reparar: <br>    
+            
+      Rueda ${i} => Diametro: ${car.wheels[i].diameter}, marca: ${car.wheels[i].brand} <br>`;
+        }
+        /*
+            (document.getElementById('result') as HTMLElement).innerHTML += `Coche para reparar: <br>
+              Matricula: ${car.plate}, color: ${car.color} y marca: ${car.brand} <br>
+              Rueda 1 => Diametro: ${car.wheels[0].diameter}, marca: ${car.wheels[0].brand} <br>
+              Rueda 2 => Diametro: ${car.wheels[1].diameter}, marca: ${car.wheels[1].brand} <br>
+              Rueda 3 => Diametro: ${car.wheels[2].diameter}, marca: ${car.wheels[2].brand} <br>
+              Rueda 4 => Diametro: ${car.wheels[3].diameter}, marca: ${car.wheels[3].brand} <br><br><br>`
+            
+          */
     }
     else {
         hideWheel();
